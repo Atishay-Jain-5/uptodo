@@ -6,10 +6,12 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { TasksContext } from "../../Context/TasksContext";
-const ModalPriority = ({modalVisible2,setModalVisible2}) => {
+import { EditTaskContext } from "@/Context/EditTaskContext";
+const ModalPriority = ({modalVisible2,setModalVisible2,flag}) => {
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [back, setback] = useState(0);
   const { userTasks, setuserTasks } = useContext(TasksContext);
+  const { taskIndex, setTaskIndex } = useContext(EditTaskContext);
   // useEffect(() => {
   //   console.log(userTasks);
   // }, [userTasks]);
@@ -25,7 +27,7 @@ const ModalPriority = ({modalVisible2,setModalVisible2}) => {
           <TouchableOpacity
             onPress={() => {
               setback(i);
-              setuserTasks((prevTasks) => {
+             if(!flag) {setuserTasks((prevTasks) => {
                 if (prevTasks.length > 0) {
                   const updatedTasks = [...prevTasks];
                   updatedTasks[updatedTasks.length - 1].Priority = i;
@@ -33,7 +35,15 @@ const ModalPriority = ({modalVisible2,setModalVisible2}) => {
                 }
                 return prevTasks;
               });
-            }}
+            }
+            if(flag){
+
+              const tasks=[...userTasks];
+              tasks[taskIndex]={...tasks[taskIndex],Priority:i}
+              setuserTasks(tasks)
+            } 
+            
+          }}
           >
             <View
               style={{

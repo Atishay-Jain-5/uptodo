@@ -18,7 +18,8 @@ import Entypo from '@expo/vector-icons/Entypo';
 import { useContext } from "react";
 import { TasksContext } from "@/Context/TasksContext";
 import {CategoryContext} from "@/Context/CategoryContext"
-const ModalCategory = ({setModalVisible3,modalVisible4,setModalVisible4}) => {
+import { EditTaskContext } from "@/Context/EditTaskContext";
+const ModalCategory = ({setModalVisible3,modalVisible4,setModalVisible4,flag}) => {
   const { userTasks, setuserTasks } = useContext(TasksContext);
   // const data = [
   //   {
@@ -69,6 +70,7 @@ const ModalCategory = ({setModalVisible3,modalVisible4,setModalVisible4}) => {
   //   },
   // ];
   const {categories,setcategories}=useContext(CategoryContext)
+  const { taskIndex, setTaskIndex } = useContext(EditTaskContext);
   useEffect(()=>{
     console.log(categories)
   },[categories])
@@ -93,7 +95,7 @@ const ModalCategory = ({setModalVisible3,modalVisible4,setModalVisible4}) => {
               onPress={() => {
                 // setback(i);
                 setuserTasks((prevTasks) => {
-                  if (prevTasks.length > 0 && i.title!=="Add") {
+                  if (!flag&&prevTasks.length > 0 && i.title!=="Add") {
                     const updatedTasks = [...prevTasks];
                     updatedTasks[updatedTasks.length - 1].category = i.title;
                     updatedTasks[updatedTasks.length - 1].icon = i.icon;
@@ -102,8 +104,14 @@ const ModalCategory = ({setModalVisible3,modalVisible4,setModalVisible4}) => {
                   else if(i.title==="Add"){
                     setModalVisible4(true)
                   }
+                 
                   return prevTasks;
                 });
+                if(flag){
+                  const tasks=[...userTasks];
+                  tasks[taskIndex]={...tasks[taskIndex],icon:i.icon,category:i.title}
+                  setuserTasks(tasks)
+                }
               }}
             >
               <View
@@ -111,7 +119,10 @@ const ModalCategory = ({setModalVisible3,modalVisible4,setModalVisible4}) => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  backgroundColor: userTasks[userTasks.length - 1].category === i.title ? "#8687e7" : "#ffcc80",
+                backgroundColor: !flag && userTasks.length > 0
+                  ? (userTasks[userTasks.length - 1].category === i.title ? "#8687e7" : "#ffcc80")
+                  : (userTasks[taskIndex].category === i.title ? "#8687e7" : "#ffcc80"),
+                
                   gap: 5,
                   // padding: 10,
                   paddingHorizontal: 2,

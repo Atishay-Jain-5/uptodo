@@ -77,6 +77,17 @@ useEffect(() => {
     // settype('default')
   }
 }, [showTime]);
+function compare( a, b ) {
+  if ( a.Priority < b.Priority ){
+    return 1;
+  }
+  if ( a.Priority > b.Priority ){
+    return -1;
+  }
+  return 0;
+}
+
+
   return (
     <View style={styles.main}>
     <Text style={styles.heading}>Add Task</Text>
@@ -85,6 +96,7 @@ useEffect(() => {
       placeholderTextColor={"white"}
       placeholder="Name"
       value={task_heading}
+      selectionColor={"white"}
       onChangeText={(text)=>{set_task_heading(text)
         
       }}
@@ -96,6 +108,7 @@ useEffect(() => {
       placeholderTextColor={"white"}
       placeholder="Description"
       value={task_desc}
+      selectionColor={"white"}
       onChangeText={(text)=>{set_task_desc(text)
         
       }}
@@ -108,16 +121,16 @@ useEffect(() => {
     <View style={styles.iconscont}>
         <TouchableOpacity onPress={()=>showDatepicker()}>
 
-      <FontAwesome5 name="stopwatch" size={24} color="white" />
+      <FontAwesome5 name="stopwatch" size={33} color="white" />
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{setModalVisible3(true)
           // settype("priority")
         }}>
-      <FontAwesome name="tag" size={24} color="white" />
+      <FontAwesome name="tag" size={33} color="white" />
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>setModalVisible2(true)}>
 
-      <FontAwesome6 name="font-awesome-flag" size={24} color="white" />
+      <FontAwesome6 name="font-awesome-flag" size={33} color="white" />
       </TouchableOpacity>
      
     </View>
@@ -125,35 +138,44 @@ useEffect(() => {
   onPress={() => {
     navigation.navigate('Home');
    
-    setuserTasks((prevTasks) => {
-      if (prevTasks.length > 0) {
-        const updatedTasks = [...prevTasks];
-        updatedTasks[updatedTasks.length - 1].heading = task_heading;
-        return updatedTasks;
-      }
-      return prevTasks;
-    });
+    // setuserTasks((prevTasks) => {
+    //   if (prevTasks.length > 0) {
+    //     const updatedTasks = [...prevTasks];
+    //     updatedTasks[updatedTasks.length - 1].heading = task_heading;
+    //     return updatedTasks;
+    //   }
+    //   return prevTasks;
+    // });
     setuserTasks((prevTasks) => {
       if (prevTasks.length > 0) {
         const updatedTasks = [...prevTasks];
         updatedTasks[updatedTasks.length - 1].desc = task_desc;
-        return updatedTasks;
-      }
-      return prevTasks;
-    });
-   
-      // const updatedTasks = [...userTasks];
-      userTasks[userTasks.length - 1].completed = false;
+        updatedTasks[updatedTasks.length - 1].heading = task_heading;
       
-    
-    setuserTasks((prevTasks) => {
-      if (prevTasks.length > 0) {
-        let updatedTasks = [...prevTasks];
+        updatedTasks[updatedTasks.length - 1].completed =false;
+        // userTasks[userTasks.length - 1].completed = false;
+        updatedTasks.sort(compare);
+        updatedTasks.forEach((task,index)=>{
+          task.index=index
+        })
         updatedTasks.push({});
         return updatedTasks;
       }
       return prevTasks;
     });
+
+      // const updatedTasks = [...userTasks];
+    
+      
+    
+    // setuserTasks((prevTasks) => {
+    //   if (prevTasks.length > 0) {
+    //     let updatedTasks = [...prevTasks];
+       
+    //     return updatedTasks;
+    //   }
+    //   return prevTasks;
+    // });
     // navigation.navigate("BottomTabsStack", { screen: "Home" });
     setModalVisible(false); 
   }}
@@ -206,7 +228,7 @@ const styles = StyleSheet.create({
         height: 50, 
         padding: 15, 
         fontSize: 16,
-
+color:"white"
       },
       inpdesc: {
         width: "90%",
@@ -216,6 +238,7 @@ const styles = StyleSheet.create({
         height: 50, 
         padding: 15, 
         fontSize: 16,
+        color:"white"
       },
       buttonContainer: {
         display: "flex",

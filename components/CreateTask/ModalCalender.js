@@ -9,6 +9,7 @@ const ModalCalender = () => {
     <TextInput
       placeholderTextColor={"white"}
       placeholder="Name"
+      selectionColor={"white"}
       style={[styles.inp,  focus1 && { borderColor: "#e5e5e5", borderWidth: 2 }]}
       onFocus={()=>{setFocus1(true) 
         setFocus2(false)}}
@@ -16,6 +17,7 @@ const ModalCalender = () => {
     <TextInput
       placeholderTextColor={"white"}
       placeholder="Description"
+      selectionColor={"white"}
       style={[styles.inpdesc, focus2 && { borderColor: "#e5e5e5", borderWidth: 2 }]}
       onFocus={()=>{setFocus1(false) 
         setFocus2(true)}}
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
     height: 50, 
     padding: 15, 
     fontSize: 16,
-
+    color:"white"
   },
   inpdesc: {
     width: "90%",

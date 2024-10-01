@@ -1,18 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CheckBox } from "react-native-elements";
 import { cloneElement } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-
-const IndexPageTaskCont = ({ obj }) => {
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import {EditTaskContext} from "@/Context/EditTaskContext"
+const IndexPageTaskCont = ({ obj,index }) => {
+  const navigation=useNavigation()
   const [checked, setchecked] = useState(false);
   const dateobj = obj?.date;
-  const datepart = dateobj?.toISOString()?.split("T")[0];
-  const timePart = dateobj?.toISOString()?.split("T")[1]?.split(".")[0];
+  const datepart = dateobj?.toISOString()?.split("T")[0]||" ";
+  const timePart = dateobj?.toISOString()?.split("T")[1]?.split(".")[0]||" ";
   // console.log(timePart.slice(0,timePart.length-3))
   const localDate = dateobj?.toLocaleDateString();
   const localTime = dateobj?.toLocaleTimeString();
-   
+   const {taskIndex, setTaskIndex}=useContext(EditTaskContext)
   return (
     <View style={styles.main}>
       <CheckBox
@@ -20,18 +23,22 @@ const IndexPageTaskCont = ({ obj }) => {
         // title='Click Here'
         checkedIcon="dot-circle-o"
         uncheckedIcon="circle-o"
-        checked={checked}
+        checked={obj?.completed}
         containerStyle={styles.checkCont}
         onPress={() => {setchecked(!checked) 
-          obj.completed=true;
+
+          !checked?obj.completed=true:obj.completed=false;
           // changes++;
         }}
       />
+       <TouchableOpacity onPress={()=>{navigation.navigate("IndexStack", { screen: "EditTask" })
+        setTaskIndex(index)
+      }}>
       <View style={styles.taskText}>
         <Text style={styles.heading}>{obj.heading}</Text>
         <View style={styles.timeFlex}>
           <Text style={styles.heading2}>
-            {localDate} At {timePart?.slice(0,timePart?.length-3)}
+            {localDate} At {localTime?.slice(0,4)}
           </Text>
           <View style={styles.iconcont}>
             <View style={styles.icon}>
@@ -45,6 +52,7 @@ const IndexPageTaskCont = ({ obj }) => {
           </View>
         </View>
       </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -85,6 +93,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
+    gap:30
   },
   icon: {
     backgroundColor: "#809cff",

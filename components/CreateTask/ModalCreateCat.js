@@ -33,6 +33,7 @@ const ModalCreateCat = ({setModalVisible4}) => {
       <Text style={styles.sub1}>Category name :</Text>
       <TextInput
         placeholderTextColor={"#939393"}
+        selectionColor={"white"}
         placeholder="Category name"
         // value={task_desc}
         // onChangeText={(text)=>{set_task_desc(text)
@@ -148,6 +149,7 @@ const styles = StyleSheet.create({
     height: "auto",
     padding: 15,
     fontSize: 16,
+    color:"white"
   },
   colorCont: {
     flexDirection: "row",

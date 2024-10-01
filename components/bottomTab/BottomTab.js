@@ -16,10 +16,14 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import DatePicker from '@/screens/Calender/Calender'
 import Focus from '@/screens/Focus/Focus'
 import Profile from '@/screens/Profile/Profile'
+import { useContext } from 'react';
 import AddTask from '@/screens/AddTask/AddTask'
+import {Modal1Context} from '@/Context/Modal1Context'
 const Tab = createBottomTabNavigator();
 
 export default function BottomTab() {
+  const {modalVisible, setModalVisible}=useContext(Modal1Context)
+  // console.log(modalVisible)
   return (
     <Tab.Navigator 
     
@@ -62,15 +66,37 @@ export default function BottomTab() {
         }}
       />
         <Tab.Screen
-        name="f2"
-        component={AddTask}
-        options={{
-          tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => {
-            return   <AntDesign name="pluscircle" size={64} style={{bottom:12 ,padding:-10,zIndex:999,position:"absolute",backgroundColor:"white",borderRadius:999,borderColor:"#8687e7"}} color="#8687e7" />;
-          },
-        }}
-      />
+          name="f2"
+          
+          // listeners={({ navigation }) => ({
+          //   tabPress: (e) => {
+          //     e.preventDefault(); // Prevent default navigation
+          //     setModalVisible(true); // Show the modal
+          //     // setType('default'); // Set modal type to default or another as needed
+          //   },
+          // })}
+          component={AddTask}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({ color, size }) => {
+              return (
+                <AntDesign
+                  name="pluscircle"
+                  size={64}
+                  style={{
+                    bottom: 12,
+                    zIndex: 999,
+                    position: "absolute",
+                    backgroundColor: "white",
+                    borderRadius: 999,
+                    borderColor: "#8687e7",
+                  }}
+                  color="#8687e7"
+                />
+              );
+            },
+          }}
+        />
       
         <Tab.Screen
         name="f3"

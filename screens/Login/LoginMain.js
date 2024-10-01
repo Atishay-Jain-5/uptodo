@@ -57,6 +57,7 @@ const LoginMain = ({ navigation }) => {
       <View style={styles.input}>
         <Text style={styles.sub}>Email</Text>
         <TextInput
+         selectionColor={"white"}
         value={email}
         onChangeText={(text)=>setEmail(text)}
           style={styles.inputbox}
@@ -65,7 +66,9 @@ const LoginMain = ({ navigation }) => {
         ></TextInput>
         <Text style={styles.sub}>Password</Text>
         <TextInput
+        
         value={Password}
+        selectionColor={"white"}
         onChangeText={(pass)=>setPassword(pass)}
           secureTextEntry={true}
           style={styles.inputbox}

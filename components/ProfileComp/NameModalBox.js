@@ -7,6 +7,7 @@ const NameModalBox = ({setModalVisible}) => {
       <Text style={styles.heading}>Change Account Name</Text>
       <View style={{ backgroundColor: "#979797", height: 2, width: "95%" }} />
       <TextInput
+       selectionColor={"white"}
         placeholderTextColor={"white"}
         placeholder="Name"
         style={styles.inp}
@@ -53,6 +54,7 @@ const styles = StyleSheet.create({
     height: 50, 
     padding: 15, 
     fontSize: 16,
+    color:"white"
   },
   buttonContainer: {
     display: "flex",

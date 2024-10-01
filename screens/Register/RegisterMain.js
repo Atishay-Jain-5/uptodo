@@ -52,6 +52,7 @@ const RegisterMain = ({navigation}) => {
     <View style={styles.input}>
       <Text style={styles.sub}>Email</Text>
       <TextInput
+       selectionColor={"white"}
         value={email}
         onChangeText={(text)=>setEmail(text)}
           style={styles.inputbox}
@@ -60,6 +61,7 @@ const RegisterMain = ({navigation}) => {
         ></TextInput>
       <Text style={styles.sub}>Password</Text>
       <TextInput
+       selectionColor={"white"}
         value={Password}
         onChangeText={(pass)=>setPassword(pass)}
           secureTextEntry={true}
@@ -69,6 +71,7 @@ const RegisterMain = ({navigation}) => {
         ></TextInput>
        <Text style={styles.sub}>Confirm Password</Text>
       <TextInput
+       selectionColor={"white"}
         secureTextEntry={true}
         style={styles.inputbox}
         placeholder="Enter Your Password "

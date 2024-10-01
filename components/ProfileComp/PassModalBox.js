@@ -11,8 +11,10 @@ const PassModalBox = ({setModalVisible}) => {
         placeholder="Old Password"
         style={styles.inp}
         secureTextEntry={true}
+        selectionColor={"white"}
       />
       <TextInput
+       selectionColor={"white"}
       secureTextEntry={true}
         placeholderTextColor={"white"}
         placeholder="New Password"
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
     height: 50, 
     padding: 15, 
     fontSize: 16,
+    color:"white"
   },
   buttonContainer: {
     display: "flex",

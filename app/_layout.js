@@ -6,11 +6,17 @@ import UserContextProvider from "../Context/UserContext";
 // import TasksContext from "../Context/TasksContext";
 import TasksContextProvider from "../Context/TasksContext";
 import CategoryContextProvider from "../Context/CategoryContext";
+import Modal1ContextProvider from "../Context/Modal1Context";
+import EditTaskContextProvider from "../Context/EditTaskContext";
 export default function RootLayout() {
   return (
     // <NavigationContainer>
+
+    <Modal1ContextProvider>
+
     <UserContextProvider>
       <CategoryContextProvider>
+<EditTaskContextProvider>
 
       <TasksContextProvider>
 
@@ -19,8 +25,10 @@ export default function RootLayout() {
       {/* <BottomTab></BottomTab> */}
     </Stack>
       </TasksContextProvider>
+</EditTaskContextProvider>
       </CategoryContextProvider>
     </UserContextProvider>
+    </Modal1ContextProvider>
     // </NavigationContainer>
   );
 }
