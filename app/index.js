@@ -14,12 +14,13 @@ import RegisterStack from '../navigation/RegisterStack'
 import { UserContext } from "@/Context/UserContext";
 import BottomTabsStack from '../navigation/BottomTabsStack'
 import { useContext } from "react";
-
+import { LogBox } from 'react-native';
 import { FirebaseAuth } from "@/FirebaseConfig";
 export default function Index() {
   const Stack=createNativeStackNavigator()
   const user=FirebaseAuth.currentUser
   // const userReg=fal;
+  LogBox.ignoreAllLogs(true);
   const {userstatus,setUserstatus}=useContext(UserContext)
   // console.log(userstatus)
   return (
@@ -28,7 +29,7 @@ export default function Index() {
 
     <Stack.Navigator screenOptions={{headerShown:false,}}>
     {
-      !true?(
+      !userstatus?(
         <>
       <Stack.Screen name="IntroStack" component={IntroStack}></Stack.Screen>
       <Stack.Screen name="LoginStack" component={LoginStack}></Stack.Screen>

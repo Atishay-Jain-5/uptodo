@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flexDirection: "row",
     alignItems: "center",
-    width: "100%",
+    width: "auto",
     gap: 10,
   },
   heading: {

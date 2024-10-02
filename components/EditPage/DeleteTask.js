@@ -23,10 +23,25 @@ const {taskIndex, setTaskIndex}=useContext(EditTaskContext)
           </View>
         </TouchableOpacity>
         <TouchableOpacity   onPress={() => {
-    const tasks = userTasks.filter((i) => i.index !== taskIndex);
-    setuserTasks(tasks);
-    setDeleteTask(false);
-            navigation.navigate("Home")
+   
+  const tasksAfterDelete = userTasks.filter((task, index) => index !== taskIndex);
+
+ 
+  // const sortedTasks = tasksAfterDelete.sort((a, b) => a.Priority > b.Priority ? true : false);
+
+
+  
+  const reindexedTasks = tasksAfterDelete.map((task, index) => ({
+    ...task,
+    index: index 
+  }));
+
+ 
+  setuserTasks(reindexedTasks);
+
+  
+  setDeleteTask(false);
+  navigation.navigate("Home");
   }}>
           <View style={styles.editButton}>
             <Text style={styles.editText}>Delete</Text>

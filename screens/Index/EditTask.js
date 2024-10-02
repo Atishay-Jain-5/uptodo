@@ -22,6 +22,7 @@ import DeleteTask from '../../components/EditPage/DeleteTask'
 const EditTask = ({ navigation }) => {
   const { taskIndex, setTaskIndex } = useContext(EditTaskContext);
   const { userTasks, setuserTasks } = useContext(TasksContext);
+  // const previous_obj = JSON.parse(JSON.stringify(userTasks[taskIndex]));
   const [dateobj, setDateObj] = useState(userTasks[taskIndex]?.date);
   const datepart = dateobj?.toISOString()?.split("T")[0] || " ";
   const timePart = dateobj?.toISOString()?.split("T")[1]?.split(".")[0] || " ";
@@ -106,10 +107,19 @@ const EditTask = ({ navigation }) => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.main}>
         <View style={styles.iconContain}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity onPress={() => {
+                // const tasks=[...userTasks];
+                // tasks[taskIndex]=
+                
+                // setuserTasks(tasks)
+                navigation.goBack()
+          }}>
             <AntDesign name="closesquare" size={30} color="white" />
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => {navigation.goBack()}}>
+
           <SimpleLineIcons name="loop" size={30} color="white" />
+          </TouchableOpacity>
         </View>
         <View style={styles.handDContainer}>
           <HandD obj={userTasks[taskIndex]}></HandD>

@@ -30,7 +30,7 @@ const ModalPriority = ({modalVisible2,setModalVisible2,flag}) => {
              if(!flag) {setuserTasks((prevTasks) => {
                 if (prevTasks.length > 0) {
                   const updatedTasks = [...prevTasks];
-                  updatedTasks[updatedTasks.length - 1].Priority = i;
+                  updatedTasks[updatedTasks.length - 1].Priority = (i === undefined ? 1 : i);
                   return updatedTasks;
                 }
                 return prevTasks;
@@ -75,7 +75,7 @@ const ModalPriority = ({modalVisible2,setModalVisible2,flag}) => {
            setuserTasks((prevTasks) => {
             if (prevTasks.length > 0) {
               const updatedTasks = [...prevTasks];
-              updatedTasks[updatedTasks.length - 1].Priority = "";
+              updatedTasks[updatedTasks.length - 1].Priority = 1;
               return updatedTasks;
             }
             return prevTasks;

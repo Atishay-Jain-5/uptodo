@@ -46,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
         .slice(0, userTasks.length - 1)
         .filter((i) => i?.completed === false);
       setnotcompleted(notcompletedTasks);
-    }, [])
+    }, [userTasks]) 
   );
   // useEffect(() => {
   //   console.log(userTasks)

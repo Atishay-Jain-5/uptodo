@@ -31,7 +31,7 @@ const LoginMain = ({ navigation }) => {
         // ...
         // console.log(user)
           setUserstatus(true);
-        // navigation.navigate("BottomTabsStack", { screen: "BottomTabsStack" })
+        // navigation.navigate("BottomTabsStack", { screen: "HomeScreen" })
       })
       .catch((error) => {
 

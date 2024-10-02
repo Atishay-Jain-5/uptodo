@@ -78,13 +78,16 @@ useEffect(() => {
   }
 }, [showTime]);
 function compare( a, b ) {
-  if ( a.Priority < b.Priority ){
-    return 1;
-  }
-  if ( a.Priority > b.Priority ){
-    return -1;
-  }
-  return 0;
+  // const priorityA = a.Priority 
+  //     const priorityB = b.Priority 
+  //     console.log( a.Priority  + "  "+ b.Priority)
+  // if (  a.Priority  >b.Priority ){
+  //   return 1;
+  // }
+ return a.Priority>b.Priority
+    // return -1;
+  
+  // return 0;
 }
 
 
@@ -136,7 +139,7 @@ function compare( a, b ) {
     </View>
     <TouchableOpacity
   onPress={() => {
-    navigation.navigate('Home');
+    
    
     // setuserTasks((prevTasks) => {
     //   if (prevTasks.length > 0) {
@@ -151,10 +154,16 @@ function compare( a, b ) {
         const updatedTasks = [...prevTasks];
         updatedTasks[updatedTasks.length - 1].desc = task_desc;
         updatedTasks[updatedTasks.length - 1].heading = task_heading;
+        updatedTasks[updatedTasks.length - 1].Priority = 
+        (updatedTasks[updatedTasks.length - 1].Priority === "" || 
+         updatedTasks[updatedTasks.length - 1].Priority === undefined || 
+         updatedTasks[updatedTasks.length - 1].Priority === null) 
+        ? 1 
+        : updatedTasks[updatedTasks.length - 1].Priority;
       
         updatedTasks[updatedTasks.length - 1].completed =false;
         // userTasks[userTasks.length - 1].completed = false;
-        updatedTasks.sort(compare);
+        // updatedTasks.sort(compare);
         updatedTasks.forEach((task,index)=>{
           task.index=index
         })
@@ -165,7 +174,7 @@ function compare( a, b ) {
     });
 
       // const updatedTasks = [...userTasks];
-    
+      navigation.navigate('Home');
       
     
     // setuserTasks((prevTasks) => {

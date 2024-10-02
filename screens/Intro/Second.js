@@ -31,7 +31,7 @@ const Second = ({navigation}) => {
   };
   return (
     <View className="flex-1 h-max bg-custom-black">
-      <TouchableOpacity onPress={()=>navigation.navigate("BottomTabsStack", { screen: "BottomTabsStack" })}>
+      <TouchableOpacity onPress={()=>navigation.navigate("LoginStack", { screen: "LoginMain" })}>
 
       <Text className="pt-14 pl-5 text-xl text-slate-500">Skip</Text>
       </TouchableOpacity>

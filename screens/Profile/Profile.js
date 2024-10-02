@@ -1,6 +1,6 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, {useState} from 'react';
-import { FirebaseAuth } from "@/FirebaseConfig";
+// import { FirebaseAuth } from "@/FirebaseConfig";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -10,8 +10,28 @@ import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import CheveronButton from '@/components/ProfileComp/CheveronButton'
 import ModalProfile from '@/components/ProfileComp/ModalProfile'
 import BottomSheet1 from '@/components/ProfileComp/BottomSheet'
+import { FirebaseAuth } from "@/FirebaseConfig";
+import { signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { UserContext } from "@/Context/UserContext";
+import { useContext } from "react";
 import { useRef } from "react";
 const Profile = ({navigation}) => {
+  const Auth = getAuth();
+  const {userstatus,setUserstatus}=useContext(UserContext)
+  const user=FirebaseAuth.currentUser
+  const out = () => {
+    signOut(Auth)
+      .then(() => {
+        setUserstatus(false)
+        // navigation.navigate("BottomTabsStack", { screen: "BottomTab" });
+      })
+      .catch((error) => {
+        
+        console.error("Error signing out: ", error);
+      });
+  };
+  
   const [isOpen, setOpen] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const email = FirebaseAuth?.currentUser?.email;
@@ -101,7 +121,10 @@ const [type,setType]=useState("")
         
            <CheveronButton icon={"Help and FeedBack"}></CheveronButton>
           <CheveronButton icon={"Support Us"}></CheveronButton>
+          <TouchableOpacity onPress={()=>out()}>
+
          <CheveronButton icon={"logout"}></CheveronButton>
+          </TouchableOpacity>
      
         </View>
       </View>
