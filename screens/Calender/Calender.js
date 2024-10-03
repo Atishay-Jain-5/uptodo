@@ -12,6 +12,10 @@ const Calender = () => {
   const [date_wise,set_date_wise]=useState([]);
   const [date,setDate]=useState(new Date().toLocaleDateString())
   const [completed,setCompleted]=useState([])
+  const [changes, setChanges] = useState(0);
+  const incrementChanges = () => {
+    setChanges((prevChanges) => prevChanges + 1);
+  };
   useEffect(() => {
     if (userTasks.length > 0&&select1) {
      
@@ -127,7 +131,7 @@ const Calender = () => {
           marginVertical: 10,
         }}
         >
-        <IndexPageTaskCont index={item.index} obj={item} />
+        <IndexPageTaskCont index={item.index} obj={item}   incrementChanges={incrementChanges}/>
       </View>
     );
   }}

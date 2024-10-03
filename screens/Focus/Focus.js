@@ -7,7 +7,7 @@ import DropdownComp from "../../components/FocusComps/DropdownComp";
 // import { BarChart} from "react-native-gifted-charts";
 import Barchart from "../../components/FocusComps/Barchart";
 import FocusCards from "../../components/FocusComps/FocusCards"
-import Insta from '../../SVG/Inta'
+// import Insta from '../../SVG/Inta'
 // import { ProgressCircle } from 'react-native-svg-charts'
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 const Focus = () => {

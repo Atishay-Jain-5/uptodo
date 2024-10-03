@@ -23,6 +23,18 @@ export default function Index() {
   LogBox.ignoreAllLogs(true);
   const {userstatus,setUserstatus}=useContext(UserContext)
   // console.log(userstatus)
+  if (!__DEV__) {
+    global.console = {
+        info: () => {},
+        log: () => {},
+        assert: () => {},
+        warn: () => {},
+        debug: () => {},
+        error: () => {},
+        time: () => {},
+        timeEnd: () => {},
+    };
+}
   return (
 
    
