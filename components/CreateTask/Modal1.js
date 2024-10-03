@@ -23,7 +23,7 @@ const Modal1 = ({settype,type,modalVisible2,setModalVisible2,modalVisible3,setMo
       setuserTasks(prevTasks => {
         if (prevTasks.length > 0) {
           const updatedTasks = [...prevTasks];
-          updatedTasks[updatedTasks.length - 1].date = ""; 
+          updatedTasks[updatedTasks.length - 1].date = new Date().toLocaleDateString; 
           return updatedTasks;
         }
         return prevTasks;
@@ -162,6 +162,11 @@ function compare( a, b ) {
         : updatedTasks[updatedTasks.length - 1].Priority;
       
         updatedTasks[updatedTasks.length - 1].completed =false;
+        if (updatedTasks.length > 0) {
+          const lastTask = updatedTasks[updatedTasks.length - 1];
+          lastTask.date = lastTask.date === undefined ? new Date(): lastTask.date;
+        }
+        
         // userTasks[userTasks.length - 1].completed = false;
         // updatedTasks.sort(compare);
         updatedTasks.forEach((task,index)=>{

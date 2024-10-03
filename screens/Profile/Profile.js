@@ -16,13 +16,16 @@ import { getAuth } from "firebase/auth";
 import { UserContext } from "@/Context/UserContext";
 import { useContext } from "react";
 import { useRef } from "react";
+import { TasksContext } from "@/Context/TasksContext";
 const Profile = ({navigation}) => {
   const Auth = getAuth();
   const {userstatus,setUserstatus}=useContext(UserContext)
+  const {userTasks,setuserTasks}=useContext(TasksContext)
   const user=FirebaseAuth.currentUser
   const out = () => {
     signOut(Auth)
       .then(() => {
+        setuserTasks([{}])
         setUserstatus(false)
         // navigation.navigate("BottomTabsStack", { screen: "BottomTab" });
       })

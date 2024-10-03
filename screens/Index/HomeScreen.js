@@ -22,7 +22,11 @@ const HomeScreen = ({ navigation }) => {
   // console.log(userTasks)
   const [completed, setCompleted] = useState([]);
   const [notcompleted, setnotcompleted] = useState([]);
-  // let changes=0;
+  const [changes, setChanges] = useState(0);
+
+  const incrementChanges = () => {
+    setChanges((prevChanges) => prevChanges + 1);
+  };
 
   const [dropdownSelecttion, setdropdownSelecttion] = useState("Completed");
   useEffect(() => {
@@ -35,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
       .slice(0, userTasks.length - 1)
       .filter((i) => i?.completed === false && i !== {});
     setnotcompleted(notcompletedTasks);
-  }, [dropdownSelecttion]);
+  }, [dropdownSelecttion,changes]);
   useFocusEffect(
     React.useCallback(() => {
       const completedTasks = userTasks
@@ -102,6 +106,7 @@ const HomeScreen = ({ navigation }) => {
                     <IndexPageTaskCont
                       index={item.index}
                       obj={item}
+                      incrementChanges={incrementChanges}
                     ></IndexPageTaskCont>
                   </View>
                 )}
@@ -130,6 +135,7 @@ const HomeScreen = ({ navigation }) => {
                     <IndexPageTaskCont
                       index={item.index}
                       obj={item}
+                      incrementChanges={incrementChanges}
                     ></IndexPageTaskCont>
                   </View>
                 )}

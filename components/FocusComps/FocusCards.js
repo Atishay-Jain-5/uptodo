@@ -3,6 +3,7 @@ import React from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 const FocusCards = ({data}) => {
   // console.log(data.appName)
+  // const obj=[{icon:"https://img.icons8.com/?size=100&id=13963&format=png&color=000000"}]
   return (
     <View style={styles.main}>
    <Image 

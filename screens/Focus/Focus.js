@@ -26,20 +26,20 @@ const Focus = () => {
       "appName":"Instagram",
       "time":4
     },
-    {"img":"https://img.icons8.com/color/48/instagram-new--v1.png",
-      "appName":"Instagram",
+    {"img":"https://img.icons8.com/?size=100&id=13963&format=png&color=000000",
+      "appName":"Twitter",
       "time":4
     },
-    {"img":"https://img.icons8.com/color/48/instagram-new--v1.png",
-      "appName":"Instagram",
+    {"img":"https://img.icons8.com/?size=100&id=118497&format=png&color=000000",
+      "appName":"Facebook",
       "time":4
     },
-    {"img":"https://img.icons8.com/color/48/instagram-new--v1.png",
-      "appName":"Instagram",
+    {"img":"https://img.icons8.com/?size=100&id=k4jADXhS5U1t&format=png&color=000000",
+      "appName":"Telegram",
       "time":4
     },
-    {"img":"https://img.icons8.com/color/48/instagram-new--v1.png",
-      "appName":"Instagram",
+    {"img":"https://img.icons8.com/?size=100&id=P7UIlhbpWzZm&format=png&color=000000",
+      "appName":"Gmail",
       "time":4
     }
   ]

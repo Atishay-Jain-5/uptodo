@@ -24,8 +24,8 @@ const EditTask = ({ navigation }) => {
   const { userTasks, setuserTasks } = useContext(TasksContext);
   // const previous_obj = JSON.parse(JSON.stringify(userTasks[taskIndex]));
   const [dateobj, setDateObj] = useState(userTasks[taskIndex]?.date);
-  const datepart = dateobj?.toISOString()?.split("T")[0] || " ";
-  const timePart = dateobj?.toISOString()?.split("T")[1]?.split(".")[0] || " ";
+  // const datepart = dateobj?.toISOString()?.split("T")[0] || " ";
+  // const timePart = dateobj?.toISOString()?.split("T")[1]?.split(".")[0] || " ";
   const localDate = dateobj?.toLocaleDateString();
   const localTime = dateobj?.toLocaleTimeString();
   const [date, setDate] = useState(new Date());

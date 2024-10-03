@@ -6,12 +6,12 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {EditTaskContext} from "@/Context/EditTaskContext"
-const IndexPageTaskCont = ({ obj,index }) => {
+const IndexPageTaskCont = ({ obj,index,   incrementChanges}) => {
   const navigation=useNavigation()
   const [checked, setchecked] = useState(false);
   const dateobj = obj?.date;
-  const datepart = dateobj?.toISOString()?.split("T")[0]||" ";
-  const timePart = dateobj?.toISOString()?.split("T")[1]?.split(".")[0]||" ";
+  // const datepart = dateobj?.toISOString()?.split("T")[0]||" ";
+  // const timePart = dateobj?.toISOString()?.split("T")[1]?.split(".")[0]||" ";
   // console.log(timePart.slice(0,timePart.length-3))
   const localDate = dateobj?.toLocaleDateString();
   const localTime = dateobj?.toLocaleTimeString();
@@ -28,7 +28,7 @@ const IndexPageTaskCont = ({ obj,index }) => {
         onPress={() => {setchecked(!checked) 
 
           !checked?obj.completed=true:obj.completed=false;
-          // changes++;
+          incrementChanges();  
         }}
       />
        <TouchableOpacity onPress={()=>{navigation.navigate("IndexStack", { screen: "EditTask" })

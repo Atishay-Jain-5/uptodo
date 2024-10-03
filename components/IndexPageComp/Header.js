@@ -11,22 +11,46 @@ const Header = () => {
   const {taskIndex, setTaskIndex}=useContext(EditTaskContext)
   const [curr_filter,set_curr_filter]=useState("pri");
   const filter = () => {
-   
     const tempTasks = [...userTasks];
-    
-    
-    const lastTask = tempTasks.pop();  
-    
   
-    const sortedTasks = tempTasks.sort((a, b) => a.Priority - b.Priority);
-    
    
-    sortedTasks.push(lastTask);
+    const lastTask = tempTasks.pop();
+  
+    if (curr_filter === 'pri') {
+      const sortedTasks = tempTasks.sort((a, b) => a.Priority - b.Priority);
+      
+      
+      set_curr_filter("date");
+  
+     
+      sortedTasks.forEach((task, index) => {
+        task.index = index;
+      });
+  
     
-  // sortedTasks.push(lastTask)
-  console.log(sortedTasks)
-    setuserTasks(sortedTasks);
+      sortedTasks.push(lastTask);
+      
+      console.log(sortedTasks);
+      setuserTasks(sortedTasks);
+    } else {
+    
+      const sortedTasks = tempTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+  
+      set_curr_filter("pri");
+  
+   
+      sortedTasks.forEach((task, index) => {
+        task.index = index;
+      });
+  
+    
+      sortedTasks.push(lastTask);
+  
+      console.log(sortedTasks);
+      setuserTasks(sortedTasks);
+    }
   };
+  
   return (
     <View style={{padding:10}}>
 
